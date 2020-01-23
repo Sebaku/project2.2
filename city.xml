@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <city>
+    <name> dehradun</name>
+    <lat>30.317</lat>
+    <lng>78.033</lng>
+  </city>
+  <city>
+    <name>Hissar</name>
+    <lat>29.167</lat>
+    <lng>75.733</lng>
+  </city>
+  <city>
+    <name>Bikaner</name>
+    <lat>28</lat>
+    <lng>73.3</lng>
+  </city>
+  <city>
+    <name>New Delhi Palam</name>
+    <lat>28.567</lat>
+    <lng>77.117</lng>
+  </city>
+</doc>

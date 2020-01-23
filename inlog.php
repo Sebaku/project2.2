@@ -43,15 +43,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form class="col-12 ">
         <div class="form-group" id="login" action="" method="post">
             <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
+            <input class="form-control" type="text" placeholder="Enter Username" name="username" required>
         </div>
         <div class="form-group">
             <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+            <input class="form-control" type="password" placeholder="Enter Password" name="password" required>
         </div>
         <div class="form-group">
-            <button type="submit" name="login">Login</button>
-            <button type="submit" name="forgot">Forgot password?</button> <!-- TODO Forgot password doesn't do anything -->
+            <button class="btn btn-primary" type="submit" name="login">Login</button>
+            <button class="btn btn-secondary" type="submit" name="forgot">Forgot password?</button> <!-- TODO Forgot password doesn't do anything -->
         </div>
     </form>   
   </div>

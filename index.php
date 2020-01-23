@@ -9,7 +9,7 @@
 <?php include('header.php');?>
 
 <div id="map"></div>
-<h1 class="wrapper" style="border-bottom: 5px solid #333;">Dehradun</h1>
+<h1 class="wrapper" style="border-bottom: 5px solid #333;"><span id="cityTitle">India</span></h1>
 <section class="wrapper">
 		<div class=" dayContainer">
     		<div class="colDay">
@@ -64,23 +64,7 @@
   		</div>
 </section>
 <?php include("footer.php") ?>
-    <script>
-		// Initialize and add the map
-		function initMap() {
-			// The location of Uluru
-			var dehradun = {lat: 30.317, lng: 78.033};
-			var Hissar = {lat: 29.167, lng:75.733}
-			var Bikaner = {lat: 28, lng: 73.3}
-			var NewDelhiPalam = {lat:28.567, lng:77.117}
-			// The map, centered at Uluru
-			var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: dehradun});
-			// The marker, positioned at DEHRADUN
-			var markerDehradun = new google.maps.Marker({position: dehradun, map: map});
-			var markerHissar = new google.maps.Marker({position: Hissar, map: map});
-			var markerBikaner = new google.maps.Marker({position: Bikaner, map: map});
-			var markerNewDelhiPalam = new google.maps.Marker({position: NewDelhiPalam, map: map});
-		}
-    </script>
+    <script type="text/javascript" src="map.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbd_QRIojcJoQt5tSlhSCDM6uQPPZYEaw&callback=initMap"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

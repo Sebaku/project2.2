@@ -31,7 +31,7 @@
             <div class="dropdown-menu dropdown-menu-right logoutMenu" aria-labelledby="loginDropwdown">
               <a class="dropdown-item" href="#">Download</a>
               <a class="dropdown-item" href="#">Item 2</a>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="inlog.php">Logout</a>
             </div>
           </li>
 			</ul>
