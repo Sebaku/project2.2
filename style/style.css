@@ -85,8 +85,16 @@
 .wrapper {
 	max-width: 1050px;
 	width: 100%;
-	overflow: scroll;
 	margin: 0 auto;
+}
+
+.wrapperScroll {
+	overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.wrapperScroll::-webkit-scrollbar {
+	display: none;
 }
 
 .dayContainer {
@@ -106,6 +114,15 @@
 }
 .dayContainer .colDay i {
 	font-size: 100px;
+}
+
+.top10{
+	text-align: center;
+	margin-top: 50px;
+}
+
+.top10 ol {
+	text-align: center;
 }
 
 .footer {

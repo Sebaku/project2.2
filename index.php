@@ -9,9 +9,9 @@
 <?php include('header.php');?>
 
 <div id="map"></div>
-<h1 class="wrapper" style="border-bottom: 5px solid #333;"><span id="cityTitle">India</span></h1>
-<section class="wrapper">
-		<div class=" dayContainer">
+<h1 class="wrapper" style="border-bottom: 5px solid #333;"><span id="cityTitle" class=" ">India</span></h1>
+<section class="wrapper wrapperScroll">
+		<div class="dayContainer">
     		<div class="colDay">
     			<h1>Monday</h1>
     			<p>Januari 13 2020</p>
@@ -63,6 +63,86 @@
     		</div>
   		</div>
 </section>
+<section class="wrapper top10">
+  <div class="row">
+    <div class="col">
+      <h3>Top 10 Rainfall</h3>
+      <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+    <div class="col">
+      <h3>Top 10 Tempature</h3>
+      <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+    <div class="col">
+      <h3>Top 10 Cloudiness</h3>
+      <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+  </div>
+  
+
+</section>
+<script type="text/javascript">
+const slider = document.querySelector('.wrapperScroll');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  slider.classList.add('active');
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+});
+slider.addEventListener('mouseleave', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+slider.addEventListener('mouseup', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+slider.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2; //scroll-fast
+  slider.scrollLeft = scrollLeft - walk;
+  console.log(walk);
+});
+</script>
 <?php include("footer.php") ?>
     <script type="text/javascript" src="map.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbd_QRIojcJoQt5tSlhSCDM6uQPPZYEaw&callback=initMap"></script>
