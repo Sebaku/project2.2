@@ -6,7 +6,7 @@
     <script src="https://kit.fontawesome.com/ea578bbff6.js" crossorigin="anonymous"></script>
 	  <script src="scripts/jquery-3.4.1.min.js"></script>	
 	<script src="DatesHandler.js" type="text/javascript"></script>
-	 <script src="weatherHandler.js" type="text/javascript"></script>
+	 <script src="WeatherHandler.js" type="text/javascript"></script>
 </head>
 <body>
 <?php include('header.php');?>
