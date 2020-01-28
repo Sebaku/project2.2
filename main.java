@@ -71,11 +71,21 @@ class client {
 			        			            	break;
 			        			            case "WNDDIR":
 			        			            	nextEvent = reader.nextEvent();
+			        			            	if (nextEvent.isEndElement() == false) {
 			        			            	output += nextEvent.asCharacters().getData() + "\r\n";
+			        			            	} 
+			        			            	else {
+			        			            		output += 0 + ",";
+			        			            	}			        			            	
 			        			            	break;
 			        			            default: 
 			        			            	nextEvent = reader.nextEvent();
-			        			            	output += nextEvent.asCharacters().getData() + ",";
+			        			            	if (nextEvent.isEndElement() == false) {
+			        			            		output += nextEvent.asCharacters().getData() + ",";
+			        			            	} 
+			        			            	else {
+			        			            		output += 0 + ",";
+			        			            	}			        			            	
 			        			            	break;
 			        			                
 			        			        }
