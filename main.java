@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
@@ -17,28 +19,31 @@ import javax.xml.stream.events.XMLEvent;
 class client {
     public static void main(String args[]){
         try {
-            ServerSocket socket = new ServerSocket(7789);
+            @SuppressWarnings("resource")
+			ServerSocket socket = new ServerSocket(7789);
             
         	XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-        	String pathfile = "C:/Users/Sebas/eclipse-workspace/Project 2.2/src/db/";
+        	String pathfile = "C:/Users/HVV/Downloads/UnwdmiGenerator21-full/db/";
             
             Thread t1 = new Thread();
             t1.start();
             Thread thread1;
             //Socket sock;
-            System.out.println("Service running");           
+            System.out.println("Service running");
+            ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(80);
             while(true){
                 final Socket sock = socket.accept();
                 new Thread() {
                 	public void run() {
-		                try {
-							System.out.println(sock.getInputStream());
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+//		                try {
+//							System.out.println(sock.getInputStream());
+//						} catch (IOException e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
                 		String station = "";
                 		boolean loop = true;
+                		int i = 0;
 		                try {
 		                	XMLEventReader reader = xmlInputFactory.createXMLEventReader(new InputStreamReader(sock.getInputStream()));;
 		        			String output = new String();
@@ -81,8 +86,12 @@ class client {
 			        			        	loop = false;
 			        			        }
 			        			        else if (endElement.getName().getLocalPart().equals("MEASUREMENT")) {			        			        	
-			        			        	//System.out.println(output);
-			        			        	fileWriter(output, pathfile +station+ ".txt");
+			        			        	String finaloutput = output;
+			        			        	String finalstation = station;
+			        			        	Runnable task = () -> {
+			        			        		fileWriter(finaloutput, pathfile +finalstation+ ".txt");
+			        			        	};
+			        			        	executor.execute(task);
 			        			        	output = "";
 			        			        }
 			        			    }
@@ -100,7 +109,7 @@ class client {
                 }}.start();
            }
         } catch (Exception e) {
-            System.out.println("Werkt niet");
+            System.out.println("Connection can't be made");
         }
     }
     
@@ -113,6 +122,5 @@ class client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        
     }          
 }
