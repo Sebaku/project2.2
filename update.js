@@ -1,3 +1,5 @@
+// developed by: Riduan van Noordt Wieringa
+
 function loopToday() {
     var interval = setInterval(function () {
         updateToday();
