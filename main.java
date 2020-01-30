@@ -28,11 +28,10 @@ class client {
 			ServerSocket socket = new ServerSocket(7789);
             
         	XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-        	String pathfile = "C:/Users/HVV/Downloads/UnwdmiGenerator21-full/db/";
+        	String pathfile = "./db/";
             
             Thread t1 = new Thread();
             t1.start();
-            Thread thread1;
             //Socket sock;
             System.out.println("Service running");
             ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(80);
@@ -57,6 +56,10 @@ class client {
 		        			while (reader.hasNext()) {
 		        				while (loop == true) {
 			        			    XMLEvent nextEvent = reader.nextEvent();
+			        			    boolean error = false;
+        			            	if (nextEvent.isEndElement()) {
+        			            	error = true;
+        			            	} 
 			        			    //System.out.println(nextEvent);
 			        			    if (nextEvent.isStartElement()) {
 			        			        StartElement startElement = nextEvent.asStartElement();
@@ -84,19 +87,19 @@ class client {
 			        			            	}
 			        			            	else
 			        			            	{			        			            		
-				        			            	
 				        			            	currentStation = stationList.get(stationInt);
-
 			        			            	}
 			        			            	break;
-			        			            case "WNDDIR":
+			        			            case "TEMP":
 			        			            	nextEvent = reader.nextEvent();
-			        			            	if (nextEvent.isEndElement() == false) {
-			        			            	output += nextEvent.asCharacters().getData() + "\r\n";
-			        			            	} 
-			        			            	else {
-			        			            		output += 0 + ",";
-			        			            	}			        			            	
+			        			            	output = nextEvent.asCharacters().getData();
+			        			            	String strip = output.replaceAll("[.]", "");
+			        			            	int tempInt = Integer.parseInt(strip) + 500;
+			        			            	output = Integer.toString(tempInt);
+			        			            	System.out.println(output);
+			        			            	break;
+			        			            case "WNDDIR":
+		        			            	
 			        			            	break;
 			        			            default: 
 			        			            	nextEvent = reader.nextEvent();

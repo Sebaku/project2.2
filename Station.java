@@ -1,18 +1,20 @@
+import java.util.Queue;
+
 public class Station {
 	private int stn = 0;
 	private int date;
 	private int time;
-	private byte temp;
-	private byte dewp;
-	private byte stp;
-	private byte slp;
-	private byte visib;
-	private byte wdsp;
-	private byte prcp;
-	private byte sndp;
-	private byte frshtt;
-	private byte cldc;
-	private byte wnddir;
+	private int temp;
+	private int dewp;
+	private int stp;
+	private int slp;
+	private int visib;
+	private int wdsp;
+	private int prcp;
+	private int sndp;
+	private int frshtt;
+	private int cldc;
+	private int wnddir;
 	
 	//get methods
 	public int getStn() {
@@ -27,47 +29,47 @@ public class Station {
 		return time;
 	}
 		
-	public byte getTemp() {
+	public int getTemp() {
 		return temp;
 	}
 		
-	public byte getDewp() {
+	public int getDewp() {
 		return dewp;
 	}
 		
-	public byte getStp() {
+	public int getStp() {
 		return stp;
 	}
 		
-	public byte getSlp() {
+	public int getSlp() {
 		return slp;
 	}
 		
-	public byte getVisib() {
+	public int getVisib() {
 		return visib;
 	}
 		
-	public byte getWdsp() {
+	public int getWdsp() {
 		return wdsp;
 	}
 		
-	public byte getPrcp() {
+	public int getPrcp() {
 		return prcp;
 	}
 		
-	public byte getSndp() {
+	public int getSndp() {
 		return sndp;
 	}
 		
-	public byte getFrshtt() {
+	public int getFrshtt() {
 		return frshtt;
 	}
 		
-	public byte getCldc() {
+	public int getCldc() {
 		return cldc;
 	}
 		
-	public byte getWnddir() {
+	public int getWnddir() {
 		return wnddir;
 	}
 		
@@ -85,46 +87,49 @@ public class Station {
 		this.time = time;
 	}
 		
-	public void setTemp(byte temp) {
+	public void setTemp(int temp) {
 		this.temp = temp;
 	}
 		
-	public void setDewp(byte dewp) {
+	public void setDewp(int dewp) {
 		this.dewp = dewp;
 	}
 		
-	public void setStp(byte stp) {
+	public void setStp(int stp) {
 		this.stp = stp;
 	}
 		
-	public void setSlp(byte slp) {
+	public void setSlp(int slp) {
 		this.slp = slp;
 	}
 		
-	public void setVisib(byte visib) {
+	public void setVisib(int visib) {
 		this.visib = visib;
 	}
 		
-	public void setWdsp(byte wdsp) {
+	public void setWdsp(int wdsp) {
 		this.wdsp = wdsp;
 	}
 		
-	public void setPrcp(byte prcp) {
+	public void setPrcp(int prcp) {
 		this.prcp = prcp;
 	}
 		
-	public void setSndp(byte sndp) {
+	public void setSndp(int sndp) {
 		this.sndp = sndp;
 	}
 		
-	public void setFrshtt(byte frshtt) {
+	public void setFrshtt(int frshtt) {
 		this.frshtt = frshtt;
 	}
 		
-	public void setCldc(byte cldc) {
+	public void setCldc(int cldc) {
 		this.cldc = cldc;
 	}
 		
-	public void setWnddir(byte wnddir) {
+	public void setWnddir(int wnddir) {
 	}
+	
+	
 }
+
