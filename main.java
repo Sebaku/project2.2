@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -17,8 +18,12 @@ import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
 class client {
-    public static void main(String args[]){
+	static HashMap<Integer, Station> stationList = new HashMap<>();
+	static int initialize = 0;
+    public static void main(String args[]){    	
+    	
         try {
+        	
             @SuppressWarnings("resource")
 			ServerSocket socket = new ServerSocket(7789);
             
@@ -42,6 +47,7 @@ class client {
 //							e1.printStackTrace();
 //						}
                 		String station = "";
+                		Station currentStation;
                 		boolean loop = true;
                 		int i = 0;
 		                try {
@@ -63,11 +69,25 @@ class client {
 			        			                }
 			        			                break;
 			        			            case "MEASUREMENT":
+			        			            	if (initialize <= 8000) {		        			            			
+			        			            	incInit();
+			        			            	}
 			        			            	break;
 			        			            case "STN":
 			        			            	nextEvent = reader.nextEvent();
 			        			            	station = nextEvent.asCharacters().getData();
-			        			            	output += station + ",";
+			        			            	int stationInt = Integer.parseInt(station);
+			        			            	if (initialize <= 8000) {
+			        			            		currentStation = new Station();
+			        			            		stationList.put(stationInt, currentStation);
+			        			            		System.out.println(initialize);
+			        			            	}
+			        			            	else
+			        			            	{			        			            		
+				        			            	
+				        			            	currentStation = stationList.get(stationInt);
+
+			        			            	}
 			        			            	break;
 			        			            case "WNDDIR":
 			        			            	nextEvent = reader.nextEvent();
@@ -132,5 +152,10 @@ class client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }          
+    }   
+    
+    public static void incInit() {
+		initialize++;
+	}
+    
 }
