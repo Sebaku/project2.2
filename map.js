@@ -7,31 +7,6 @@ function initMap() {
 
   var marker, i;
 
-  // function getAllStations() {
-  //   var url = 'http://localhost:8888/WeatherwebIT/city.xml';
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: url,
-  //     dataType: 'xml',
-  //     success: getStationsFromXML
-  //   });
-  // }
-
-  // function getStationsFromXML(xml){
-  //   $(xml).find("city").each(function(){  
-  //     var myLatLng = {lat: $(this).find('lat').text(), lng: $(this).find('lng').text()};
-  //     var name = $(this).find('name').text();
-  //     var marker = new google.maps.Marker({ position: myLatLng, name: name, map: map });
-  //   });  
-  // }
-  //   google.maps.event.addListener(marker, 'click', (function(marker, i) {
-  //     return function() {
-  //       map.setZoom(6);
-  //       map.setCenter(marker.getPosition());
-  //       $('#cityTitle').text(marker.name);
-  //     }
-  //   })(marker,i));
-
   for (i = 0; i < city.length; i++) {
     var myLatLng = {lat: city[i].lat, lng: city[i].lng};
     var marker = new google.maps.Marker({
