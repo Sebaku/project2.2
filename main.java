@@ -46,7 +46,7 @@ class client {
 //							e1.printStackTrace();
 //						}
                 		String station = "";
-                		Station currentStation;
+                		Station currentStation = null;
                 		boolean loop = true;
                 		int i = 0;
 		                try {
@@ -72,18 +72,19 @@ class client {
 			        			                }
 			        			                break;
 			        			            case "MEASUREMENT":
-			        			            	if (initialize <= 8000) {		        			            			
-			        			            	incInit();
-			        			            	}
+											/*
+											 * if (initialize <= 8000) { incInit(); }
+											 */
 			        			            	break;
 			        			            case "STN":
 			        			            	nextEvent = reader.nextEvent();
 			        			            	station = nextEvent.asCharacters().getData();
 			        			            	int stationInt = Integer.parseInt(station);
-			        			            	if (initialize <= 8000) {
+			        			            	if (stationList.containsKey(stationInt) == false) {
 			        			            		currentStation = new Station();
+			        			            		currentStation.setStn(stationInt);
 			        			            		stationList.put(stationInt, currentStation);
-			        			            		System.out.println(initialize);
+			        			            		//System.out.println(initialize);
 			        			            	}
 			        			            	else
 			        			            	{			        			            		
@@ -95,8 +96,12 @@ class client {
 			        			            	output = nextEvent.asCharacters().getData();
 			        			            	String strip = output.replaceAll("[.]", "");
 			        			            	int tempInt = Integer.parseInt(strip) + 500;
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setTemp(tempInt);
+			        			            		System.out.println(currentStation.getStn() + ": " + currentStation.getTemp());
+			        			            	}
 			        			            	output = Integer.toString(tempInt);
-			        			            	System.out.println(output);
+			        			            	//System.out.println(output);
 			        			            	break;
 			        			            case "WNDDIR":
 		        			            	
