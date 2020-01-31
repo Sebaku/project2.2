@@ -75,7 +75,8 @@ public class Station {
 			b = checkTemp(temp, average(this.temp));
 		}
 		if (b == false) {
-			temp = Math.round(extrapolate(1,2,this.temp.get(28),this.temp.get(29)));
+			System.out.println(temp);
+			temp = this.temp.getLast() + Math.round(extrapolate(1,2,this.temp.get(28),this.temp.get(29)));
 			System.out.println(temp);
 		}
 		this.temp = fifo(temp, this.temp);
