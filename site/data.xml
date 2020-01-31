@@ -1,0 +1,13 @@
+<login>
+    <credential>
+        <admin rol="1">
+        	<password>r</password>
+        </admin>
+        <teacher rol="2">
+        	<password>password123</password>
+        </teacher>
+        <student rol="3">
+        	<password>password123</password>
+        </student>
+    </credential>
+</login>

@@ -1,0 +1,156 @@
+.inlog-form {
+	background: white;
+	margin-top: 20vh;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 10px;
+}
+
+.inlog-form form {
+	border-top: 10px solid #3385ff;
+}
+
+.inlog-form .btn-primary {
+	background-color: #3385ff;
+}
+
+#login {
+	margin-top: 1rem;
+}
+
+.logo-login {
+	display: block;
+	margin: 10px auto;
+}
+
+#map {
+	height: 400px;  /* The height is 400 pixels */
+	width: 100%;  /* The width is the width of the web page */
+	margin-bottom: 50px;
+}
+.contactBar {
+	background: #333;
+	color: #aaa;
+	font-size: 14px;
+	height: 20px;
+}
+.contactBar p {
+	display: inline; 
+
+}
+.contactBar a{
+	color: #aaa;
+	margin-left: 10px;
+}
+
+.contactBar .second {
+	position: absolute;
+	right: 10px;
+}
+
+.navbar {
+	background-color: #3385ff;
+}
+
+.menu {
+	position: absolute;
+	right: 20px;
+}
+
+.logo {
+    height: 70px;
+    z-index: 10;
+}
+
+.navbar .name, .navbar .company {
+	font-size: 20px;
+    	margin-left: 5px;
+}
+
+.dropdown-item {
+	color: #3385ff !important;
+}
+
+.navbar-light .navbar-nav .nav-link  {
+	color: white !important;
+}
+
+.navbar-light .navbar-nav .active>.nav-link {
+	color: #081A41 !important;
+}
+
+.user {
+	font-size: 40px;
+	margin-left: 50px;
+}
+
+.wrapper {
+	max-width: 1050px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.wrapperDownload {
+	margin: 40px auto 15px;
+}
+
+.wrapperScroll {
+	overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.wrapperScroll::-webkit-scrollbar {
+	display: none;
+}
+
+.dayContainer {
+	padding-top: 20px;
+	width: 1680px !important;
+}
+
+.dayContainer .colDay {
+	background-color: #3385ff;
+	margin: 5px;
+	padding: 50px 5px;
+	border-radius: 25px;
+	height: 400px;
+	width: 230px !important;
+	text-align: center;
+	float: left;
+}
+.dayContainer .colDay i {
+	font-size: 100px;
+}
+
+.top10{
+	text-align: center;
+	margin-top: 50px;
+}
+
+.top10 ol {
+	text-align: center;
+}
+
+.footer {
+	min-height: 200px;
+	background-color: #171717;
+	color: white;
+	margin: 50px 0 0;
+	padding: 20px 0;
+}
+
+@media screen and (max-width: 992px) {
+	.dropdown-menu.show.loginMenu {
+	  width: auto;
+	}
+	.navbar .name {
+		margin: -60px 0 0 90px;
+	}
+	.navbar .company {
+		margin: 0px 0 0 90px;
+	}
+	.user {
+		margin-left: 80px;
+    	margin-top: 120px;
+    	position: absolute;
+	}
+}
