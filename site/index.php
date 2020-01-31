@@ -91,7 +91,9 @@
   <div class="row">
     <div class="col">
       <h3>Top 10 Rainfall</h3>
-      <ol>
+        <div class="row">
+          <div class="col">
+      <ol id='top_ten_rain_name'>
         <li></li>
         <li></li>
         <li></li>
@@ -105,8 +107,26 @@
       </ol>
     </div>
     <div class="col">
-      <h3>Top 10 Tempature</h3>
-      <ol>
+    <ul id='top_ten_rain_value' style='list-style-type: none'>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      </div>
+      </div>
+      </div>
+<div class="col">
+      <h3>Top 10 Temperatures</h3>
+        <div class="row">
+          <div class="col">
+      <ol id='top_ten_temp_name'>
         <li></li>
         <li></li>
         <li></li>
@@ -120,8 +140,7 @@
       </ol>
     </div>
     <div class="col">
-      <h3>Top 10 Cloudiness</h3>
-      <ol>
+    <ul id='top_ten_temp_value' style='list-style-type: none'>
         <li></li>
         <li></li>
         <li></li>
@@ -132,8 +151,42 @@
         <li></li>
         <li></li>
         <li></li>
-      </ol>
-    </div>
+      </ul>
+      </div>
+      </div>
+      </div><div class="col">
+                  <h3>Top 10 Cloudiness</h3>
+                    <div class="row">
+                      <div class="col">
+                  <ol id='top_ten_cloud_name'>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ol>
+                </div>
+                <div class="col">
+                <ul id='top_ten_cloud_value' style='list-style-type: none'>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  </div>
+                  </div>
+                  </div>
   </div>
 
 
@@ -172,6 +225,8 @@ $(document).ready(function(){
     initDates();
     setWeatherValues();
     updateToday();
+    updateTopTens();
+
     loopToday();
 });
 function setCurrentStation(id){
