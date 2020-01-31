@@ -11,7 +11,7 @@ function updateToday() {
         month = '0' + month;
     }
     var dateFormat = [date.getFullYear(), month, date.getDate()].join('-');
-    var url = 'http://localhost/project22/data/' + dateFormat + "/" + currentStationID + ".txt";
+    var url = '/site/data/' + dateFormat + "/" + currentStationID + ".txt";
     let lineLength = 31;
     let varLengths = {temp: [0, 3], prcp: [19, 21]};
 
