@@ -47,7 +47,7 @@
     <div class="col">
       <ul>
       <?php $i = 0; }; ?>
-          <li><a href="/site/data/<?= $day ?>/<?= $filename ?>" download><?php foreach ($city as $key) {
+          <li><a href="xml_converter.php?date=<?= $day ?>&stn=<?= trim($filename, ".txt") ?>"><?php foreach ($city as $key) {
           if($key[0] == trim($filename,".txt")){ echo $key[1];}} ?></a></li>
         <?php };
         $i++; 
