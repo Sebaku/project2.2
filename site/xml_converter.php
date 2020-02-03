@@ -6,9 +6,7 @@
  * Time: 16:25
  */
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
+// Get date & station number or die
 if(!isset($_GET['date']) && (!isset($_GET['stn']))) {
     die('Invalid request');
 }
@@ -16,23 +14,26 @@ if(!isset($_GET['date']) && (!isset($_GET['stn']))) {
 $date = $_GET['date'];
 $stn = $_GET['stn'];
 
+// Open .txt data file
 $filename = "data/" . $date . "/" . $stn . ".txt";
 $file = fopen($filename, "r");
 $file = fread($file, filesize($filename));
 
+// Slice string in $file (34 characters total)
 $temp = substr($file, 0, 3);
 $dewp = substr($file, 3, 3);
-$stp = substr($file, 6, 3);
-$slp = substr($file, 9, 3);
-$visib = substr($file, 12, 3);
-$wdsp = substr($file, 15, 4);
-$prcp = substr($file, 19, 2);
-$sndp = substr($file, 21, 2);
-$frshtt = substr($file, 23, 2);
-$cldc = substr($file, 25, 3);
-$wnddir = substr($file, 28, 3);
+$stp = substr($file, 6, 4);
+$slp = substr($file, 10, 4);
+$visib = substr($file, 14, 3);
+$wdsp = substr($file, 17, 3);
+$prcp = substr($file, 20, 3);
+$sndp = substr($file, 23, 3);
+$frshtt = substr($file, 26, 2);
+$cldc = substr($file, 28, 3);
+$wnddir = substr($file, 31, 3);
 
-$xml = new SimpleXMLElement("<weatherdata></weatherdata>");
+// Create XML file
+$xml = new SimpleXMLElement("<weatherdata/>");
 $measurement = $xml->addChild("measurement");
 $measurement->addChild("stn", $stn);
 $measurement->addChild("date", $date);
@@ -53,5 +54,3 @@ header("Content-disposition: attachment; filename=\"weatherdata_" . $stn . ".xml
 $dom = dom_import_simplexml($xml)->ownerDocument;
 $dom->formatOutput = true;
 echo $dom->saveXML();
-
-?>
