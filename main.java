@@ -46,23 +46,23 @@ class client {
 //							e1.printStackTrace();
 //						}
                 		String station = "";
+                		String date = "";
                 		Station currentStation = null;
                 		boolean loop = true;
+                		int temp = 0;
                 		int i = 0;
 		                try {
 		                	XMLEventReader reader = xmlInputFactory.createXMLEventReader(new InputStreamReader(sock.getInputStream()));;
 		        			String output = new String();
+		        			String input = new String();
 		        			
 		        			while (reader.hasNext()) {
 		        				while (loop == true) {
 			        			    XMLEvent nextEvent = reader.nextEvent();
-			        			    boolean error = false;
-        			            	if (nextEvent.isEndElement()) {
-        			            	error = true;
-        			            	} 
 			        			    //System.out.println(nextEvent);
 			        			    if (nextEvent.isStartElement()) {
 			        			        StartElement startElement = nextEvent.asStartElement();
+				        			    XMLEvent value = reader.nextEvent();
 			        			        switch (startElement.getName().getLocalPart()) {
 			        			            case "WEATHERDATA":
 			        			                
@@ -77,8 +77,7 @@ class client {
 											 */
 			        			            	break;
 			        			            case "STN":
-			        			            	nextEvent = reader.nextEvent();
-			        			            	station = nextEvent.asCharacters().getData();
+			        			            	station = value.asCharacters().getData();
 			        			            	int stationInt = Integer.parseInt(station);
 			        			            	if (stationList.containsKey(stationInt) == false) {
 			        			            		currentStation = new Station();
@@ -91,31 +90,221 @@ class client {
 				        			            	currentStation = stationList.get(stationInt);
 			        			            	}
 			        			            	break;
+			        			            case "DATE":
+			        			            	date = value.asCharacters().getData();
+			        			            	break;
 			        			            case "TEMP":
-			        			            	nextEvent = reader.nextEvent();
-			        			            	output = nextEvent.asCharacters().getData();
-			        			            	String strip = output.replaceAll("[.]", "");
-			        			            	int tempInt = Integer.parseInt(strip) + 500;
-			        			            	if (currentStation != null) {
-			        			            		currentStation.setTemp(tempInt);
-			        			            		System.out.println(currentStation.getStn() + ": " + currentStation.getTemp());
+			        			            	
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getTemp().getLast();
 			        			            	}
-			        			            	output = Integer.toString(tempInt);
-			        			            	//System.out.println(output);
-			        			            	break;
-			        			            case "WNDDIR":
-		        			            	
-			        			            	break;
-			        			            default: 
-			        			            	nextEvent = reader.nextEvent();
-			        			            	if (nextEvent.isEndElement() == false) {
-			        			            		output += nextEvent.asCharacters().getData() + ",";
-			        			            	} 
 			        			            	else {
-			        			            		output += 0 + ",";
-			        			            	}			        			            	
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = Integer.parseInt(strip) + 500;
+			        			            	}
+			        			            	
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setTemp(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getTemp());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 3) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
+			        			            	break;			        			            	
+			        			            case "DEWP":
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getDewp().getLast();
+			        			            	}
+			        			            	else {
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = Integer.parseInt(strip) + 500;
+			        			            	}
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setDewp(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getDewp());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 3) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
 			        			            	break;
-			        			                
+			        			            case "STP":
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getStp().getLast();
+			        			            	}
+			        			            	else {
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = Integer.parseInt(strip) - 5000;
+			        			            	}
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setStp(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getStp());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 4) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
+			        			            	break;
+			        			            case "SLP":
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getSlp().getLast();
+			        			            	}
+			        			            	else {
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = Integer.parseInt(strip) - 5000;
+			        			            	}
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setSlp(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getSlp());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 4) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
+			        			            	break;
+			        			            case "VISIB":
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getVisib().getLast();
+			        			            	}
+			        			            	else {
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = Integer.parseInt(strip);
+			        			            	}
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setVisib(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getVisib());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 3) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
+			        			            	
+			        			            	break;
+			        			            case "WDSP":
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getWdsp().getLast();
+			        			            	}
+			        			            	else {
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = Integer.parseInt(strip);
+			        			            	}
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setWdsp(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getWdsp());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 3) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
+			        			            	break;
+			        			            case "PRCP":
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getPrcp().getLast();
+			        			            	}
+			        			            	else {
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = Integer.parseInt(strip);
+			        			            	}
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setPrcp(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getPrcp());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 3) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
+			        			            	break;
+			        			            case "SNDP":
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getSndp().getLast();
+			        			            	}
+			        			            	else {
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = Integer.parseInt(strip) / 2;
+			        			            	}
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setSndp(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getSndp());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 3) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
+			        			            	break;
+			        			            case "FRSHTT":
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getFrshtt().getLast();
+			        			            	}
+			        			            	else {
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = binaryToDecimal(Integer.parseInt(strip));
+			        			            	}
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setFrshtt(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getFrshtt());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 2) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
+			        			            	break;
+			        			            case "CLDC":
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getCldc().getLast();
+			        			            	}
+			        			            	else {
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = Integer.parseInt(strip);
+			        			            	}
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setCldc(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getCldc());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 3) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
+			        			            	break;		        			            	
+			        			            case "WNDDIR":
+			        			            	if (value.isEndElement()) {
+			        			            		temp = currentStation.getWnddir().getLast();
+			        			            	}
+			        			            	else {
+			        			            		input = value.asCharacters().getData();
+			        			            		String strip = input.replaceAll("[.]", "");
+				        			            	temp = Integer.parseInt(strip);
+			        			            	}
+			        			            	if (currentStation != null) {
+			        			            		currentStation.setWnddir(temp);
+			        			            		//System.out.println(currentStation.getStn() + ": " + currentStation.getWnddir());
+			        			            	}
+			        			            	input = Integer.toString(temp);
+			        			            	while (input.length() < 3) {
+			        			            		input = "0" + input;
+			        			            	}
+			        			            	output += input;
+			        			            	break;			        			                
 			        			        }
 			        			    }
 			        			    if (nextEvent.isEndElement()) {
@@ -126,8 +315,9 @@ class client {
 			        			        else if (endElement.getName().getLocalPart().equals("MEASUREMENT")) {			        			        	
 			        			        	String finaloutput = output;
 			        			        	String finalstation = station;
+			        			        	String finaldate = date;
 			        			        	Runnable task = () -> {
-			        			        		fileWriter(finaloutput, pathfile +finalstation+ ".txt");
+			        			        		fileWriter(finaloutput, pathfile  + finaldate + "/" +finalstation+ ".txt");
 			        			        	};
 			        			        	executor.execute(task);
 			        			        	output = "";
@@ -160,7 +350,30 @@ class client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }   
+    }
+    
+    //https://www.geeksforgeeks.org/program-binary-decimal-conversion/
+    public static int binaryToDecimal(int n) 
+    { 
+        int num = n; 
+        int dec_value = 0; 
+  
+        // Initializing base 
+        // value to 1, i.e 2^0 
+        int base = 1; 
+  
+        int temp = num; 
+        while (temp > 0) { 
+            int last_digit = temp % 10; 
+            temp = temp / 10; 
+  
+            dec_value += last_digit * base; 
+  
+            base = base * 2; 
+        } 
+  
+        return dec_value; 
+    } 
     
     public static void incInit() {
 		initialize++;

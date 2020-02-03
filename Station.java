@@ -70,16 +70,18 @@ public class Station {
 	}
 		
 	public void setTemp(int temp) {
-		boolean b = true;
-		if(this.temp.size() == 30) {
-			b = checkTemp(temp, average(this.temp));
-		}
-		if (b == false) {
-			System.out.println(temp);
-			temp = this.temp.getLast() + Math.round(extrapolate(1,2,this.temp.get(28),this.temp.get(29)));
-			System.out.println(temp);
-		}
-		this.temp = fifo(temp, this.temp);
+		
+	  boolean b = true; 
+	  if(this.temp.size() == 30) { 
+		  b = checkTemp(temp, average(this.temp)); 
+	  } 
+	  if (b == false) { 
+		  System.out.println(temp); 
+		  temp = this.temp.getLast() + Math.round(extrapolate(1,2,this.temp.get(28),this.temp.get(29)));
+		  System.out.println(temp); 
+	  }
+		 
+	  this.temp = fifo(temp, this.temp);
 	}
 		
 	public void setDewp(int dewp) {
