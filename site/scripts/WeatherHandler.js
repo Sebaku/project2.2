@@ -1,3 +1,5 @@
+// Developed by: Riduan van Noordt Wieringa
+
 function setWeatherValues() {
     let averageTemps = [];
     let averageRains = [];
@@ -13,8 +15,8 @@ function setWeatherValues() {
         }
         let dateFormat = [date.getFullYear(), month, date.getDate()].join('-');
         var url = '/site/data/' + dateFormat + "/" + currentStationID + ".txt";
-        let lineLength = 31;
-        let varLengths = {temp: [0, 3], prcp: [19, 21]};
+        let lineLength = 34;
+        let varLengths = {temp: [0, 3], prcp: [20, 23]};
 
         let call = $.ajax({
             type: 'GET',
