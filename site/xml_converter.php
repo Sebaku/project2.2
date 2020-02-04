@@ -23,14 +23,23 @@ $file = fread($file, filesize($filename));
 $temp = substr($file, 0, 3);
 $temp = (($temp-500)/10)*1.8+32; // Temperature in Fahrenheit
 $dewp = substr($file, 3, 3);
+$dewp = $dewp/10;
 $stp = substr($file, 6, 4);
+$stp = $stp/10;
 $slp = substr($file, 10, 4);
+$slp = $slp/10;
 $visib = substr($file, 14, 3);
+$visib = $visib/10;
 $wdsp = substr($file, 17, 3);
+$wdsp = $wdsp/10;
 $prcp = substr($file, 20, 3);
+$prcp = $prcp/100;
 $sndp = substr($file, 23, 3);
+$sndp = $sndp/10;
 $frshtt = substr($file, 26, 2);
+$frshtt = decbin($frshtt); // Binary
 $cldc = substr($file, 28, 3);
+$cldc = $cldc/10;
 $wnddir = substr($file, 31, 3);
 
 // Create XML file
