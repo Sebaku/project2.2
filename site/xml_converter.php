@@ -21,6 +21,7 @@ $file = fread($file, filesize($filename));
 
 // Slice string in $file (34 characters total)
 $temp = substr($file, 0, 3);
+$temp = (($temp-500)/10)*1.8+32; // Temperature in Fahrenheit
 $dewp = substr($file, 3, 3);
 $stp = substr($file, 6, 4);
 $slp = substr($file, 10, 4);
